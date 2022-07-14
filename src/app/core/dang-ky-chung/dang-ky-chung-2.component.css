@@ -1,0 +1,44 @@
+.borderClass {
+  border-style: none;
+}
+
+@media (max-width: 575px) {
+  .borderClass {
+    border: none;
+  }
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+label {
+  margin-bottom: 1px;
+}
+
+.text-separator::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  margin-left: 3px;
+  background-color: #dee2e6;
+  margin-bottom: 3px;
+}
+
+.btn-main {
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+}
+
+  .btn-main:hover {
+    background-color: lemonchiffon;
+    border-color: #007bff;
+  }
+
+.full-logo {
+  content: url("../../../assets/images/Logo.png");
+  width: 50%;
+  height: auto;
+}

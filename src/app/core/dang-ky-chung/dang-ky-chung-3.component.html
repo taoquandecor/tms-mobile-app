@@ -1,0 +1,29 @@
+<div class="top-parent">
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center">
+      <div class="col-sm-6 align-self-center">
+        <div class="card borderClass p-4">
+          <div class="font-weight-bold small text-info" translate="">Cảm ơn bạn đã đăng ký.</div>
+          <div class="mt-2 font-italic" translate="" *ngIf="isNew">
+            Chúng tôi sẽ xác nhận thông tin đăng ký của bạn và thông tin lại với bạn vào
+            <span *ngIf="email">địa chỉ email&nbsp;<b>{{ email }}</b></span>
+            <span *ngIf="email && soDienThoai" translate="">&nbsp;hoặc&nbsp;</span>
+            <span *ngIf="soDienThoai">số điện thoại&nbsp;<b>{{ soDienThoai }}</b></span>
+            <span>.</span>
+          </div>
+
+          <div class="mt-2 font-italic" translate="" *ngIf="!isNew">
+            Ngay sau khi quản trị nội bộ của bạn xác nhận, Bạn có thể sử dụng thông tin dưới đây để đăng nhập:
+            <div *ngIf="email">Địa chỉ email:&nbsp;<b>{{ email }}</b></div>
+            <div *ngIf="email && soDienThoai" translate="">&nbsp;hoặc&nbsp;</div>
+            <div *ngIf="soDienThoai">Số điện thoại:&nbsp;<b>{{ soDienThoai }}</b></div>
+          </div>
+
+          <div class="mt-2" translate="">
+            Mời bạn <a [routerLink]='["/dang-nhap"]' [queryParams]="{ userId: tenTruyNhap }"><strong>bấm vào đây</strong></a> để quay lại màn hình đăng nhập.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

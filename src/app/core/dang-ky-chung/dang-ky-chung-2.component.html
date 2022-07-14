@@ -1,0 +1,164 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-6 align-self-center">
+      <div class="card borderClass">
+        <div class="text-center mt-1">
+          <img class="full-logo p-1" />
+        </div>
+        <article class="card-body">
+          <h4 class="mb-2 text-center text-muted" translate="">Đăng ký</h4>
+
+          <div>
+            <div class="form-group" *ngIf="!isMoi">
+              <label class="control-label" translate="">Email hoặc số điện thoại của Người giới thiệu:</label>
+              <i class="fa fa-spinner fa-pulse text-warning fa-fw ml-1" *ngIf="isLayCha"></i>
+              <input #tenCha1="ngModel" name="tenCha" class="form-control" autocompleteOff [ngModel]="nsd.tenCha" maxlength="200" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="setCha($event)" />
+              <div *ngIf="chaError" class="text-danger small" translate="">
+                Email hoặc Số điện thoại chưa đăng ký hoặc chưa được xác nhận.
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label class="control-label" translate="">Tên Đơn vị kinh doanh:</label>
+              <input #ten1="ngModel" name="ten" class="form-control" [(ngModel)]="nsd.ten" maxlength="200" required [disabled]="!isMoi" />
+              <div *ngIf="ten1.invalid && !ten1.pristine" class="text-danger small" translate="">
+                Xin nhập tên doanh nghiệp, nhà hàng, khách sạn, quán cà phê...
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label class="control-label" translate="">Địa chỉ:</label>
+              <input #diaChi1="ngModel" name="diaChi" class="form-control" [(ngModel)]="nsd.diaChi" maxlength="500" required [disabled]="!isMoi" />
+              <div *ngIf="diaChi1.invalid && !diaChi1.pristine" class="text-danger small" translate="">
+                Xin nhập địa chỉ.
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label class="control-label" translate="">Loại hình kinh doanh:</label>
+              <select #lhkd1="ngModel" name="lhkd" class="form-control" [(ngModel)]="nsd.maLoaiHinhKinhDoanh" required [disabled]="!isMoi">
+                <option *ngIf="chonEmpty()" [ngValue]="undefined"></option>
+                <option *ngFor="let t of loaiHinhs" [ngValue]="t.maPK">{{ t.ten }}</option>
+              </select>
+              <div *ngIf="lhkd1.invalid && !lhkd1.pristine" class="text-danger small" translate="">
+                Xin chọn loại hình kinh doanh.
+              </div>
+            </div>
+
+            <div class="mb-2 mt-2">
+              <div class="text-info font-weight-bold small-90 d-flex text-separator align-items-end" translate="">
+                Thông tin tài khoản
+              </div>
+            </div>
+
+            <div class="row gutter-10">
+              <div class="col-12 col-lg-6">
+                <div class="form-group required">
+                  <label class="control-label" translate="">Họ và tên đệm:</label>
+                  <input type="text" ngModel #ho1="ngModel" name="ho" class="form-control" [(ngModel)]="nsd.hoNguoiDangKy" maxlength="200" required />
+                  <div *ngIf="!ho1.value && !ho1.pristine" class="text-danger">
+                    <small translate="">Xin nhập họ và tên đệm</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-6">
+                <div class="form-group required">
+                  <label class="control-label" translate="">Tên:</label>
+                  <input type="text" ngModel #tenNguoi1="ngModel" name="tenNguoi" class="form-control" [(ngModel)]="nsd.tenNguoiDangKy" maxlength="200" required />
+                  <div *ngIf="!tenNguoi1.value && !tenNguoi1.pristine" class="text-danger">
+                    <small translate="">Xin nhập tên</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row gutter-10">
+              <div class="col-12 col-lg-6">
+                <div class="form-group required">
+                  <label class="control-label" translate="">Email:</label>
+                  <input type="email" ngModel #email1="ngModel" name="email" autocomplete="chrome-off" email="true" class="form-control" [(ngModel)]="nsd.email" maxlength="200" (blur)="checkExists()" required />
+                  <div *ngIf="(!email1.value || email1.invalid) && !email1.pristine" class="text-danger">
+                    <small translate="">Xin nhập email hợp lệ</small>
+                  </div>
+                  <div *ngIf="job.email" class="text-warning">
+                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                  </div>
+                  <div *ngIf="exists.email" class="text-danger small" translate="">
+                    Email đã được sử dụng. Nếu là email của bạn, hãy sử dụng chức năng lấy lại mật khẩu.
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col-12 col-lg-6">
+                <div class="form-group required">
+                  <label class="control-label" translate="">Số điện thoại:</label>
+                  <input type="tel" ngModel #tel1="ngModel" name="tel" class="form-control" [(ngModel)]="nsd.soDienThoai" maxlength="200" (blur)="checkExists()" required />
+                  <div *ngIf="!tel1.value && !tel1.pristine" class="text-danger">
+                    <small translate="">Xin nhập số điện thoại hợp lệ</small>
+                  </div>
+                  <div *ngIf="job.soDienThoai" class="text-warning">
+                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                  </div>
+                  <div *ngIf="exists.soDienThoai" class="text-danger small" translate="">
+                    Số điện thoại đã được sử dụng. Nếu là Số điện thoại của bạn, hãy sử dụng chức năng lấy lại mật khẩu.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row gutter-10">
+              <div class="col-12 col-lg-6">
+                <div class="form-group required">
+                  <label class="control-label" translate="">Mật khẩu:</label>
+                  <input type="password" #matKhau1="ngModel" name="matKhau" class="form-control" [(ngModel)]="nsd.matKhau" maxlength="200" required autocomplete="new-password" />
+                  <div *ngIf="matKhau1.invalid && !matKhau1.pristine" class="text-danger small" translate="">
+                    Xin nhập mật khẩu.
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-12 col-lg-6">
+                <div class="form-group required">
+                  <label class="control-label" translate="">Nhắc lại mật khẩu:</label>
+                  <input type="password" #nhacLai1="ngModel" name="nhacLai" class="form-control" [(ngModel)]="nhacLaiMatKhau" maxlength="200" required />
+                  <div *ngIf="(nhacLai1.invalid || nhacLai1.value !== matKhau1.value) && !nhacLai1.pristine" class="text-danger small" translate="">
+                    Xin nhập Nhắc lại mật khẩu trùng với mật khẩu.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group required">
+              <label class="control-label" translate="">Mã xác thực:</label>
+              <div class="input-group">
+                <input type="text" #captcha1="ngModel" name="captcha" class="form-control" [(ngModel)]="captcha" maxlength="4" required />
+                <div class="input-group-append">
+                  <img *ngIf="captchaImage" [src]="viewAnh()" />
+                  <button type="button" class="btn btn-sm btn-icon-mw" title="{{ 'Lấy lại mã xác thực' | translate }}" (click)="layLaiCaptcha()"><i class="fa fa-refresh"></i></button>
+                </div>
+              </div>
+              <div *ngIf="(captcha1.invalid || captcha1.value !== captcha1.value) && !captcha1.pristine" class="text-danger small" translate="">
+                Xin nhập Mã xác thực theo hình ảnh bên cạnh.
+              </div>
+            </div>
+
+            <div class="small text-info">
+              <div translate="">Bạn cần nhập đủ những thông tin có dấu sao (<span style="color: red;">*</span>).</div>
+              <div translate="">Bạn có thể sử dụng Email hoặc Số điện thoại đã đăng ký để đăng nhập.</div>
+            </div>
+
+            <div class="text-center pt-2">
+              <button type="button" workingStatus [isWorking]="dataLoading" class="btn btn-primary pull-right"
+                      [disabled]="(nhacLai1.value !== matKhau1.value) || !tel1.value || !email1.value || !lhkd1.value || job.tenTruyNhap || job.email || job.soDienThoai || exists.tenTruyNhap || exists.email || exists.soDienThoai || chaError"
+                      (click)="register($event)" translate="">
+                Đăng ký
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

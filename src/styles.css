@@ -1,0 +1,257 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* You can add global styles to this file, and also import other style files */
+
+
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+
+html,
+body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    /*overflow: auto;*/
+}
+
+.text-warp {
+    white-space: normal;
+}
+
+::placeholder {
+    color: darkgrey !important;
+    font-style: italic;
+}
+
+.placeholder {
+    color: darkgrey !important;
+    font-style: italic;
+}
+
+.checkbox-1x {
+    transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+}
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: red;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.btn-icon-mw {
+    min-width: 33px;
+}
+
+.btn-icon-mxh {
+    max-height: 30.8px;
+}
+
+.gutter-10.row {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.gutter-10>[class^="col-"],
+.gutter-10>[class^=" col-"] {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.gutter-4.row {
+    margin-right: -2px;
+    margin-left: -2px;
+}
+
+.gutter-4>[class^="col-"],
+.gutter-4>[class^=" col-"] {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.gutter-0.row {
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.gutter-0>[class^="col-"],
+.gutter-0>[class^=" col-"] {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.dropdown-opt-placeholder {
+    display: none;
+}
+
+.dropdown-placeholder {
+    color: darkgrey;
+    font-style: italic;
+    font-size: 85%;
+}
+
+.dropdown-placeholder:focus {
+    color: darkgrey;
+}
+
+.dropdown-placeholder-rem {
+    color: black;
+    font-style: normal;
+    font-size: 100%;
+}
+
+.rem-left-round {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.text-invisible {
+    color: transparent;
+    user-select: none;
+}
+
+.small-90 {
+    font-size: 90%;
+}
+
+.disabled-bg {
+    background-color: #e9ecef;
+}
+
+.disabled-bg:focus {
+    background-color: #e9ecef;
+}
+
+.rounded-left-0 {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+
+/*Khi đặt tromg modal/table responsive thì cần đặt container="body", khi đó html <ngb-datepicker> sẽ là con trực tiếp của body*/
+
+body>ngb-datepicker {
+    z-index: 1567 !important
+}
+
+.table td.cell-space,
+.table th.cell-space {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+
+/*Dùng cho ngx-material-timepicker 3.3.1, bản mới hơn có hỗ trợ css*/
+
+
+/* .timepicker__header .timepicker-dial__container .timepicker-dial__time .timepicker-dial__control {
+  font-size: 46px !important;
+  text-align: center;
+} */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/*https://www.warrenchandler.com/2019/04/02/stop-iphones-from-zooming-in-on-form-fields/*/
+
+
+/*** iPhone and iOS Form Input Zoom Fixes ***/
+
+
+/* Fix Input Zoom on devices older than iPhone 5: */
+
+@media screen and (device-aspect-ratio: 2/3) {
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"] {
+        font-size: 16px !important;
+    }
+}
+
+
+/* Fix Input Zoom on iPhone 5, 5C, 5S, iPod Touch 5g */
+
+@media screen and (device-aspect-ratio: 40/71) {
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"] {
+        font-size: 16px !important;
+    }
+}
+
+
+/* Fix Input Zoom on iPhone 6, iPhone 6s, iPhone 7  */
+
+@media screen and (device-aspect-ratio: 375/667) {
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"] {
+        font-size: 16px !important;
+    }
+}
+
+
+/* Fix Input Zoom on iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8, iPhone X, XS, XS Max  */
+
+@media screen and (device-aspect-ratio: 9/16) {
+    select,
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"] {
+        font-size: 16px !important;
+    }
+}

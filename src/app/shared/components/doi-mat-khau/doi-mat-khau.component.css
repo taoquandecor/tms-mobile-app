@@ -1,0 +1,21 @@
+.top-parent {
+  height: calc(100vh - 180px);
+}
+
+.data-exists {
+  position: absolute;
+  width: auto;
+  bottom: 10px;
+  right: 10px;
+  margin-top: 0;
+  color: red;
+}
+
+.borderClass {
+}
+
+@media (max-width: 575px) {
+  .borderClass {
+    border: none;
+  }
+}

@@ -1,0 +1,94 @@
+<div class="container-fluid pl-0 pr-0 bg-white top-font d-flex flex-column" [ngClass]="cnDisplay ? 'mn-h-100' : ''">
+  <div class="nhom-cns border-bottom pb-1 d-flex">
+    <div *ngIf="logo" class="mr-1">
+      <a href="#" target="_blank" (click)="logoClick($event)"><img class="dv-logo" [src]="logoView()" /></a>
+    </div>
+
+    <div class="dropdown d-inline-block mr-1">
+      <span class="clickable" title="{{ 'Thông báo' | translate }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-boundary="viewport" id="canhBaoId" (click)="thongBaoClick()">
+        <i class="text-warning fa fa-bell"></i><sub class="reminder">({{ soThongBao }})</sub>
+      </span>
+      <div class="dropdown-menu" aria-labelledby="canhBaoId">
+        <a class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('sinhNhat', $event)" translate=""><i class="fa fa-birthday-cake mr-1"></i>Sinh nhật bạn bè <span class="sub-reminder">({{ banService.friendSinhNhatCount }})</span></a>
+        <a class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('ketBan', $event)" translate=""><i class="fa fa-users mr-1"></i>Kết bạn mới <span class="sub-reminder">({{ banService.friendRequestedCount }})</span></a>
+        <a class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('giaoViec', $event)" translate=""><i class="fa fa-calendar mr-1"></i>Giao việc mới <span class="sub-reminder">({{ hotInfoService.soViecMoi }})</span></a>
+        <a class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('daoTao', $event)" translate=""><i class="fa fa-book mr-1"></i>Lịch đào tạo mới <span class="sub-reminder">({{ hotInfoService.soLenhDaoTao }})</span></a>
+        <a *ngIf="hotInfoService.soVatTuTon" class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('vatTuTon', $event)" translate=""><i class="fa fa-shopping-basket mr-1"></i>Lượng vật tư còn lại thấp <span class="sub-reminder">({{ hotInfoService.soVatTuTon }})</span></a>
+        <a *ngIf="hotInfoService.soBookingChuaThanhToan" class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('bookingChuaThanhToan', $event)" translate=""><i class="fa fa-shopping-cart mr-1"></i>Booking chưa thanh toán <span class="sub-reminder">({{ hotInfoService.soBookingChuaThanhToan }})</span></a>
+        <div class="dropdown-divider" *ngIf="quyenFloat"></div>
+        <div class="dropdown-item text-primary clickable d-flex justify-content-between" (click)="thongBaoItemClick('phanQuyen', $event)" translate="" *ngIf="quyenFloat">
+          <div><i class="fa fa-user-secret mr-1"></i>Người sử dụng mới <span class="sub-reminder">({{ hotInfoService.soNsdMoi }})</span></div>
+          <div class="border rounded ml-1 float-btn-check" (click)="checkDisplayFloat($event)">
+            <i class="fa" style="margin-left: 2px;" [ngClass]="displayFloat ? 'fa-check' : ''"></i>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('doiMatKhau', $event)" translate=""><i class="fa fa-key mr-1"></i>Đổi mật khẩu</a>
+        <a class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('dangXuat', $event)" translate=""><i class="fa fa-sign-out mr-1"></i>Đăng xuất</a>
+        <a class="dropdown-item text-primary" href="#" (click)="thongBaoItemClick('dong', $event)" translate=""><i class="fa fa-sign-out mr-1"></i>Đóng</a>
+      </div>
+    </div>
+
+    <div class="d-inline-block nhom-cn pl-2 pr-2 pt-1 mr-2" *ngFor="let n of nhoms"
+         [style.background-color]="n.mauNen ? n.mauNen : ''"
+         [style.color]="n.mauChu ? n.mauChu : ''"
+         [style.font-weight]="n.fontWeight ? n.fontWeight : ''"
+         [style.font-style]="n.fontStyle ? n.fontStyle : ''"
+         [style.text-decoration]="n.fontDecoration ? n.fontDecoration : ''"
+         [ngClass]="currNhom === n ? 'selected' : ''"
+         (click)="nhomClick(n)">
+      <i *ngIf="n.cssClass" [ngClass]="n.cssClass ? n.cssClass : ''"></i>
+      <img class="nhom-img-view mr-1" [src]="layAnh(n)" *ngIf="n.tenFile" />
+      <div class="d-inline-block mb-1">{{ n.ten }}</div>
+    </div>
+
+    <a href="#" class="ml-2 small-90" style="color:coral" *ngIf="session.isAdmin" (click)="goAdmin($event)"><u>Quản trị</u></a>
+    <div class="d-inline-flex flex-row filter-text-group ml-2 p-0" *ngIf="cnDisplay">
+      <i class="fa fa-filter align-self-end filter-icon"></i>
+      <input type="text" name="filterText" class="form-control form-control-sm filter-text border-0 m-0" [(ngModel)]="filter" placeholder="{{ 'Lọc' | translate }}" />
+    </div>
+    <div class="ten-tn pt-1" style="margin-left: auto;">[{{ session.tenTruyNhap }}]</div>
+  </div>
+
+  <div class="bg pt-2 flex-fill" *ngIf="cnDisplay">
+    <i *ngIf="status('layChucNang')" class="ml-1 fa fa-2x fa-spinner fa-pulse text-warning fa-fw"></i>
+    <div class="mt-1">
+      <div class="d-flex flex-row flex-wrap justify-content-center">
+        <div class="d-inline-block mb-3 mr-3 ml-3 d-flex" *ngFor="let c of chucNangViews()"
+             [style.background-color]="c.mauNen ? c.mauNen : ''"
+             [style.color]="c.mauChu ? c.mauChu : ''"
+             [style.font-weight]="c.fontWeight ? c.fontWeight : ''"
+             [style.font-style]="c.fontStyle ? c.fontStyle : ''"
+             [style.text-decoration]="c.fontDecoration ? c.fontDecoration : ''">
+
+          <div class="d-flex flex-column">
+            <div class="img-container rounded-top d-flex justify-content-center align-items-center" (click)="chucNangClick(c)">
+              <i *ngIf="isFa(c.cssClass)" [ngClass]="c.cssClass ? c.cssClass : ''"></i>
+              <i *ngIf="isGo(c.cssClass)" [ngClass]="c.cssClass ? 'material-icons-outlined' : ''">{{ c.cssClass }}</i>
+              <img class="cn-img-view" [src]="layAnh(c)" *ngIf="c.tenFile" />
+              <img class="cn-img-view-df" *ngIf="!c.cssClass && !c.tenFile" />
+            </div>
+            <!--<div class="text-center border-top lbl-container p-1 flex-grow-1 d-flex align-items-center justify-content-center">-->
+            <div class="text-center lbl-container p-1 flex-grow-1">
+              <div class="wrapword small-90">{{ c.ten }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-btn clickable" translate="" *ngIf="hotInfoService.soNsdMoi > 0 && displayFloat && quyenFloat" (click)="thongBaoItemClick('phanQuyen', $event)">
+          <div style="top: 50%; left: 50%; transform: translate(-50%, -50%); position: relative;">{{ hotInfoService.soNsdMoi }} người đăng ký mới</div>
+        </div>
+
+        <div class="dropdown d-inline-block ho-tro">
+          <span class="clickable small-90 px-2 py-1 rounded ho-tro" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-boundary="viewport" id="hoTroId" translate="">
+            Hỗ trợ 24/7
+          </span>
+          <div class="dropdown-menu py-0 small-90" aria-labelledby="hoTroId">
+            <a class="dropdown-item px-3 text-primary" href="#" [attr.href]="'tel:' + contactPhone" translate=""><i class="fa fa-phone mr-1"></i>Hotline: {{ formatPhone }}</a>
+            <a class="dropdown-item px-3 text-primary" href="#" [attr.href]="'mailto:' + contactEmail" translate=""><i class="fa fa-envelope mr-1"></i>Email: {{ contactEmail }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

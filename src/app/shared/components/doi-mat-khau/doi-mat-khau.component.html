@@ -1,0 +1,46 @@
+<div class="top-parent">
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center">
+      <div class="col-sm-4 align-self-center">
+        <div class="card borderClass">
+          <article class="card-body">
+            <h4 class="card-title mb-4 mt-1 text-center text-muted" translate="">Đổi mật khẩu</h4>
+
+            <form novalidate #authForm="ngForm">
+              <div class="form-group required">
+                <label class="control-label" translate="">Mật khẩu cũ:</label>
+                <input type="password" #matKhauCu1="ngModel" name="matKhauCu" class="form-control" [(ngModel)]="matKhauCu" maxlength="200" required />
+                <div *ngIf="matKhauCu1.invalid && !matKhauCu1.pristine" class="text-danger">
+                  <small translate="">Xin nhập mật khẩu cũ.</small>
+                </div>
+              </div>
+
+              <div class="form-group required">
+                <label class="control-label" translate="">Mật khẩu mới:</label>
+                <input type="password" #matKhau1="ngModel" name="matKhau" class="form-control" [(ngModel)]="matKhauMoi" maxlength="200" required />
+                <div *ngIf="matKhau1.invalid && !matKhau1.pristine" class="text-danger">
+                  <small translate="">Xin nhập mật khẩu mới.</small>
+                </div>
+              </div>
+
+              <div class="form-group required">
+                <label class="control-label" translate="">Nhắc lại mật khẩu:</label>
+                <input type="password" #nhacLai1="ngModel" name="nhacLai" class="form-control" [(ngModel)]="nhacLaiMatKhau" maxlength="200" required />
+                <div *ngIf="(nhacLai1.invalid || nhacLai1.value !== matKhau1.value) && !nhacLai1.pristine" class="text-danger">
+                  <small translate="">Xin nhập Nhắc lại mật khẩu trùng với mật khẩu mới.</small>
+                </div>
+              </div>
+
+              <div class="text-center pt-2">
+                <button type="button" workingStatus [isWorking]="dataLoading" class="btn btn-primary pull-right"
+                        [disabled]="authForm.invalid || (nhacLai1.value !== matKhau1.value)" (click)="doiMatKhau($event)" translate="">
+                  Đổi mật khẩu
+                </button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

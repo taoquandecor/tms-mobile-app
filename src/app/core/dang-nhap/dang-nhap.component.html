@@ -1,0 +1,96 @@
+<div class="d-flex flex-column h-100">
+  <div class="container-fluid flex-grow-1">
+    <div class="row h-100 justify-content-center">
+      <div class="col-lg-3 col-md-6 col-sm-12 align-self-center">
+        <div class="card borderClass">
+          <div class="text-center">
+            <img class="full-logo p-1" />
+          </div>
+          <article class="card-body">
+            <h4 class="mb-4 text-center text-muted" translate="">Đăng nhập</h4>
+
+            <form novalidate #authForm="ngForm" (ngSubmit)="login($event)">
+              <div class="form-group">
+                <label translate="">Tên truy nhập hoặc địa chỉ email:</label>
+                <input #tenTruyNhap1="ngModel" name="tenTruyNhap" class="form-control"
+                  [(ngModel)]="authService.tenTruyNhap" required [autofocus]="checkFocus(1)" autocompleteSync />
+                <div *ngIf="tenTruyNhap1.invalid && !tenTruyNhap1.pristine" class="text-danger">
+                  <small translate="">Xin nhập tên truy nhập hoặc email.</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label translate="">Mật khẩu:</label>
+                <input type="password" #mKhau1="ngModel" name="mKhau" autocomplete="off" class="form-control"
+                  [(ngModel)]="matKhau" required [autofocus]="checkFocus(2)" />
+                <div *ngIf="mKhau1.invalid && !mKhau1.pristine" class="text-danger">
+                  <small translate="">Xin nhập mật khẩu.</small>
+                </div>
+              </div>
+
+              <div class="text-center pt-2">
+                <button type="button" class="btn btn-sm btn-outline-primary border-0 pull-left"
+                  (click)="quenMatKhau($event)" translate="">
+                  Quên mật khẩu?
+                </button>
+
+                <button type="submit" workingStatus [isWorking]="dataLoading" class="btn btn-primary pull-right"
+                  [disabled]="authForm.invalid" value="submit" translate="">
+                  Đăng nhập
+                </button>
+
+                <div class="row" style="clear: both;">
+                  <div class="col-auto small pr-0">Hoặc chưa có tài khoản:</div>
+                  <div class="col pl-0 small">
+                    <hr />
+                  </div>
+                </div>
+                <button type="button" class="btn btn-outline-primary pull-left" (click)="dangKy($event)" translate="">
+                  Đăng ký
+                </button>
+              </div>
+            </form>
+          </article>
+        </div>
+
+        <div class="mt-2 small demo pt-1 pb-1 pl-2 pr-2">
+          <span class="font-italic" translate="">Sử dụng Tên truy nhập <b>demo@sytech.vn</b> và Mật khẩu <b>111</b> để
+            dùng thử phần mềm.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div #cookie1 [hidden]="!cookieDisplay" class="cookie fixed-bottom container-fluid small pt-2 pb-2" translate="">
+    <div class="row">
+      <div class="col-9 col-md-10 col-lg-11 text-right">
+        <div class="text-white" translate="">Chúng tôi sử dụng cookies để cung cấp cho bạn trải nghiệm tốt nhất.</div>
+        <div class="text-white" translate="">Chúng tôi cam kết bảo vệ thông tin từ cookie của bạn.</div>
+      </div>
+      <div class="col-3 col-md-2 col-lg-1 text-left">
+        <button class="btn btn-sm btn-primary" translate="" (click)="acceptCookie()">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="login-footer container-fluid" [style.margin-bottom.px]="cookieDisplay ? cookie1.offsetHeight : 0">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-6 d-flex">
+        <img class="logo mt-1" />
+        <div class="small font-italic text-white mt-1 ml-1" translate="">
+          Sytech Tsm là hệ thống phần mềm quản trị chuỗi các dịch vụ du lịch như Du thuyền, Khách sạn, Nhà hàng, Quán cà
+          phê, Vận chuyển hành khách, Lữ hành... Hỗ trợ bán hàng và đặt dịch vụ trực tuyến. <a
+            href="#" (click)="helpClick($event)">Chi tiết.</a>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-6">
+        <div class="title" translate="">Thông tin liên hệ:</div>
+        <div class="ml-3 small-90">
+          <a class="link" [attr.href]="'mailto:' + contactEmail">Email: {{ contactEmail }}</a>
+          <br />
+          <a class="link" [attr.href]="'tel:' + contactPhone">Phone: {{ formatPhone }}</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

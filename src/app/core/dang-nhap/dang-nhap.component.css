@@ -1,0 +1,40 @@
+@media (max-width: 993px) {
+  .borderClass {
+    border: none;
+  }
+}
+
+.full-logo {
+  content: url("../../../assets/images/Logo.png");
+  width: 80%;
+  height: auto;
+}
+
+.demo {
+  background-color: rgb(250, 250, 250);
+}
+
+.login-footer {
+  background-color: #211b31;
+}
+
+.login-footer .title {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.login-footer .link {
+  color: #007bff;
+}
+
+.login-footer .logo {
+  height: 32px;
+  width: auto;
+  content: url("../../../assets/icon/favicon.png");
+}
+
+.cookie {
+  background-color: #212327;
+  min-height: 53px;
+}

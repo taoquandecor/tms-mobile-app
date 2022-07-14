@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1036115588091",
+    "project_id": "sytech-tsm",
+    "storage_bucket": "sytech-tsm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036115588091:android:caa3831d3d983a2fe4915e",
+        "android_client_info": {
+          "package_name": "vn.sytech.tsm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036115588091-e02097b8u4f7pbo37mg2g0brag4irit9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU7T5e0gknvaSexfbGy3-gk8DMI-673gw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036115588091-e02097b8u4f7pbo37mg2g0brag4irit9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

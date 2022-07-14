@@ -1,0 +1,210 @@
+@font-face {
+  font-family: 'UTM Neo Sans IntelBold';
+  src: url('../../../assets/fonts/UTM Neo Sans IntelBold.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'UTM Neo Sans';
+  src: url('../../../assets/fonts/UTM Neo Sans Intel.ttf') format("truetype");
+}
+
+.top-font {
+  font-family: 'UTM Neo Sans IntelBold';
+  color: rgb(6, 77, 105);
+  font-size: 14px;
+}
+
+.dropdown-menu {
+  font-family: 'UTM Neo Sans';
+}
+
+.nhom-cns {
+  max-height: 50px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3px 5px 3px 5px;
+  background-color: white;
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: 768px) {
+  .nhom-cns::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .nhom-cns::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .nhom-cns::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+    .nhom-cns::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+}
+
+.nhom-cns .nhom-cn {
+  cursor: pointer;
+}
+
+.nhom-cn:hover {
+  background-color: cornsilk;
+}
+
+.nhom-cn.selected {
+  border-bottom-color: rgb(214, 87, 41);
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+
+  .nhom-cn.selected:hover {
+    background-color: cornsilk;
+  }
+
+.nhom-img-view {
+  height: 24px;
+  width: auto;
+}
+
+.img-container {
+  height: 105px !important;
+  width: 125px !important;
+  cursor: pointer;
+  color: coral;
+  /*background-color: rgb(255, 221, 156);*/
+  /*background-color: #a4ebf3;*/
+}
+
+  .img-container:hover {
+    opacity: .7;
+  }
+
+.cn-img-view {
+  height: 100%;
+  width: auto;
+}
+
+.cn-img-view-df {
+  content: url("../../../assets/images/cn.png");
+}
+
+.lbl-container {
+  width: 125px;
+}
+
+.wrapword {
+  white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+  white-space: -webkit-pre-wrap; /*Chrome & Safari */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: pre-wrap; /* CSS3 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  word-break: break-word;
+  white-space: normal;
+}
+
+.reminder {
+  color: red;
+  font-size: 60%;
+}
+
+.sub-reminder {
+  color: red;
+  font-size: 80%;
+}
+
+.ten-tn {
+  font-weight: bold;
+  color: #DAE1E7;
+}
+
+/*.ten-tn:before {
+    font-weight: bold;
+    position: absolute;
+    margin: 2px 0 0 2px;
+    content: attr(title);
+    color: #fff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+  }*/
+
+.mn-h-100 {
+  min-height: 100vh;
+}
+
+.filter-text-group {
+  max-width: 150px;
+  color: rgb(214, 87, 41);
+  border-bottom-color: rgb(214, 87, 41);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.filter-icon {
+  margin-bottom: 0.4rem;
+}
+
+.filter-text {
+  padding-bottom: 0px !important;
+  min-width: 77px;
+}
+
+  .filter-text:focus {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+  }
+
+  .float-btn {
+    position: fixed;
+    width: 170px;
+    height: 27px;
+    bottom: 10px;
+    right: 10px;
+    padding-bottom: 3px;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    font-size: .8rem;
+    background-color: crimson;
+    border-color: crimson;
+    opacity: .6;
+  }
+
+.float-btn-check {
+  width: 23px !important;
+  line-height: 18px;
+  height: 24px;
+}
+
+.bg {
+  background-color: rgb(201, 231, 245);
+  min-height: calc(100% - 41px);
+}
+
+.dv-logo {
+  max-height: 27px;
+  width: auto;
+}
+
+::placeholder {
+  font-family: 'UTM Neo Sans';
+  color: rgb(214, 87, 41) !important;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.material-icons-outlined {
+  font-size: 48px;
+}
+
+.ho-tro {
+  position: fixed;
+  bottom: 5px;
+  left: 5px;
+  background-color:rgb(29, 144, 189);
+  color: white;
+}
